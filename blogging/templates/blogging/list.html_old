@@ -1,10 +1,9 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %}{% block content %}
   <h1>Recent Posts</h1>
-  {% comment %} Iterate over the default context variable 'object_list' {% endcomment %}
-  {% for post in object_list %}
+  {% comment %} here is where the query happens {% endcomment %}
+  {% for post in posts %}
   <div class="post">
-    <h2><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h2>
+    <h2><a href="{% url 'blog_detail' post.pk %}">{{ post }}</a></h2>
     <p class="byline">
       Posted by {{ post.author.username }} &mdash; {{ post.published_date }}
     </p>
@@ -13,12 +12,9 @@
     </div>
     <ul class="categories">
       {% for category in post.categories.all %}
-        <li>{{ category.name }}</li>
+        <li>{{ category }}</li>
       {% endfor %}
     </ul>
   </div>
-  {% empty %}
-  <p>No posts available.</p>
   {% endfor %}
 {% endblock %}
-

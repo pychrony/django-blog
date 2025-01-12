@@ -1,7 +1,9 @@
 from django.urls import path
-from blogging.views import list_view, detail_view
+#from blogging.views import list_view, detail_view
+from blogging.views import PostListView, PostDetailView, StubView
 
 urlpatterns = [
-    path('', list_view, name="blog_index"),
-    path('posts/<int:post_id>/', detail_view, name="blog_detail"),
+    path('', PostListView.as_view(), name="blog_index"),
+    path('posts/<int:pk>/', PostDetailView.as_view(), name="blog_detail"),
+    path('stub/', StubView.as_view(), name = 'stub_view'),
 ]
