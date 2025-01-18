@@ -4,6 +4,7 @@
   <head>
     <title>My Django Blog</title>
     <link type="text/css" rel="stylesheet" href="{% static 'django_blog.css' %}">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{% url 'blog_rss' %}">
   </head>
   <body>
 <div id="header">  {# header begins here #}
