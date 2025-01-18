@@ -123,3 +123,20 @@ STATIC_URL = "/static/"
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
+
+
+import dj_database_url
+
+ALLOWED_HOSTS = ['nameless-savannah-81216-67c1dfa84cac.herokuapp.com', 'localhost', '127.0.0.1']
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+
+SECRET_KEY = os.getenv('SECRET_KEY', SECRET_KEY)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
