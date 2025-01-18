@@ -12,14 +12,18 @@ class StubView(View):
         if kwargs:
             body += "Kwargs:\n"
             body += "\n".join(["\t%s: %s" % i for i in kwargs.items()])
-        return HttpResponse(body, content_type = "text/plain")
+        return HttpResponse(body, content_type="text/plain")
+
 
 class PostListView(ListView):
-    template_name = 'blogging/list.html'
-    queryset = Post.objects.exclude(published_date__exact=None).order_by('-published_date')
+    template_name = "blogging/list.html"
+    queryset = Post.objects.exclude(published_date__exact=None).order_by(
+        "-published_date"
+    )
+
 
 class PostDetailView(DetailView):
-    template_name = 'blogging/detail.html'
+    template_name = "blogging/detail.html"
 
     def get_queryset(self):
         return Post.objects.exclude(published_date__exact=None)
